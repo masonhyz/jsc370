@@ -148,7 +148,6 @@ met$rh <- 100*((112-0.1*met$temp+met$dew.point)/(112+0.9*met$temp))^8
 ```{r}
 metst <- left_join(met, stations, by=join_by(USAFID==USAF))
 
-
 ```
 
 ## Question 1: Identifying Representative Stations
@@ -171,10 +170,6 @@ quantile(metst$wind.sp, na.rm=TRUE)
 cat("Atmospheric Pressure\n")
 quantile(metst$atm.press, na.rm=TRUE)
 ```
-**Answer:**
-
-
-
 
 Next identify the stations have these median values.
 
@@ -186,6 +181,12 @@ a <- metst_median %>% filter(median_atm_prs == 1011.7)
 chosen_station <- merge(merge(a, w , by = "USAFID"), t, by = "USAFID")
 
 ```
+
+**Answer:**
+
+a, t, w has the median atmospheric pressure, wind speed, and temperature respectively.
+
+Station 723119 has all three medians.
 
 Knit the document, commit your changes, and save it on GitHub. Don't forget to add `README.md` to the tree, the first time you render it.
 
@@ -318,6 +319,10 @@ summary(spline_model)
 
 plot(spline_model, pages = 1)
 ```
+**Answer**:
+
+The above two plots visualizes the two models. The cubic spline model works best because the adjusted R squared is higher than that of the linear smooth line. This is because of the fact that the model has more parameter hence fits better with data patterns.
+
 
 ## Deliverables
 
